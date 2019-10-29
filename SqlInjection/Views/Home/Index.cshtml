@@ -20,8 +20,8 @@
                 $('#unsecureContent').html(table);
             });
         }
-        function searchSecure() {
-            var name = $('#SecureSearchString').val();
+        function ExecCmdSecure() {
+            var name = $('#ExecCmdSecureString').val();
             $.get(`http://localhost:5005/ExecCmdSecure?name=${name}`
             ).done(function (data) {
                 data1 = data.split(/\n/).join('</div><br/><div>');
@@ -130,24 +130,24 @@ insiderHandler()
     </div>
     <div class="col col-6">
         <div class="card text-white mb-3">
-            <div class="card-header bg-success">Secure find Student by Name:</div>
+            <div class="card-header bg-success">Command Execution</div>
             <div class="card-body">
                 <div class="input-group">
-                    <input type="text" class="form-control" id="SecureSearchString" />
-                    <button type="button" class="btn btn-primary" onclick="">Search</button>
+                    <input type="text" class="form-control" id="ExecCmdSecureString" />
+                    <button type="button" class="btn btn-primary" onclick="ExecCmdSecure()">Execute</button>
                 </div>
-                <small style="color: black">Through this input it supposed to nothing of these commands works within it</small>
+                <small style="color: black">Type some command like: cat /etc/passwd</small>
             </div>
         </div>
     </div>
 
     <div class="col col-6">
             <div class="card text-white mb-3">
-                <div class="card-header bg-success">File Download (Directory Traversal Vulnerability):</div>
+                <div class="card-header bg-danger">File Download (Directory Traversal Vulnerability):</div>
                 <div class="card-body">
                     <div class="input-group">
                         <input type="text" class="form-control" id="DirectoryString" />
-                        <button type="button" class="btn btn-primary" onclick="">Search</button>
+                        <button type="button" class="btn btn-primary" onclick="directory_traversal()">Download</button>
                     </div>
                     <small style="color: black">Type the Filename you want to download from the server (e.g. web.config, ../../etc/passwd)</small>
                 </div>

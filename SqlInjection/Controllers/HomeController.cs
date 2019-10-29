@@ -9,15 +9,12 @@ using SqlInjection.Models;
 using System;
 
 using System.Reflection;
-using Microsoft.CSharp;
-using System.CodeDom.Compiler;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis;
 using System.IO;
 using Microsoft.CodeAnalysis.Emit;
 using System.Runtime.Loader;
 using System.Text;
-using System.Globalization;
 
 namespace SqlInjection.Controllers
 {
@@ -51,7 +48,8 @@ namespace SqlInjection.Controllers
         {
             Console.WriteLine("runtTimeExec commmand:" + commmand);
             String [] tokenized = commmand.Split(" ");
-            String Arguments = commmand.Substring(tokenized[0].Length);
+            String Arguments = commmand.Substring(tokenized[0].Length+1);
+            Console.WriteLine("Arguments:" + commmand);
             var process = new System.Diagnostics.Process()
             {
                 StartInfo = new System.Diagnostics.ProcessStartInfo
@@ -255,24 +253,7 @@ namespace SqlInjection.Controllers
         public ActionResult ExecCmdSecure(string name)
         {
             Console.WriteLine("[+] --- ExecCmdSecure:" + name);
-            var process = new System.Diagnostics.Process()
-            {
-                StartInfo = new System.Diagnostics.ProcessStartInfo
-                {					 
-                    FileName = name,
-                    Arguments = "",
-                    RedirectStandardOutput = true,
-                    UseShellExecute = false,
-                    CreateNoWindow = true,
-                }
-            };
-
-            process.Start();
-            string result = process.StandardOutput.ReadToEnd();
-            Console.WriteLine("SearchCMDInjection:" + result);
-            process.WaitForExit();
-
-            return Content(result);
+            return Content(runtTimeExec(name));
         }
 
         [HttpGet("dirTraversal")]

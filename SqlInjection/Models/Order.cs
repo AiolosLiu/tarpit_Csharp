@@ -31,6 +31,8 @@ namespace SqlInjection.Models
             }
         }
 
+        public string getEmailAddr() { return "luke.guang@company.com"; }
+
         public AspNetUser AspNetUser { get; set; }
     }
 }

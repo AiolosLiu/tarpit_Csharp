@@ -53,7 +53,7 @@ namespace SqlInjection.Migrations
                     b.ToTable("Course");
                 });
 
-            modelBuilder.Entity("SqlInjection.Models.Student", b =>
+            modelBuilder.Entity("SqlInjection.Models.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -70,6 +70,10 @@ namespace SqlInjection.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
                     b.HasKey("Id");
 
                     b.HasIndex("AspNetUserId");
@@ -77,7 +81,7 @@ namespace SqlInjection.Migrations
                     b.ToTable("Student");
                 });
 
-            modelBuilder.Entity("SqlInjection.Models.Student", b =>
+            modelBuilder.Entity("SqlInjection.Models.Order", b =>
                 {
                     b.HasOne("SqlInjection.Models.AspNetUser", "AspNetUser")
                         .WithMany()

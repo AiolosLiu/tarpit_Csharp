@@ -1,0 +1,24 @@
+services:
+  sqlinjection:
+    build:
+      context: /Users/tongbo/Downloads/CShape/tmp/ASP.NET-Demo
+      dockerfile: SqlInjection/Dockerfile
+    depends_on:
+    - sqlinjectiondb
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      CUSTOMCONNSTR_DefaultConnection: Server=sqlinjectiondb;Initial Catalog=Students;Persist
+        Security Info=False;User ID=sa;Password=@Password1;MultipleActiveResultSets=False;Connection
+        Timeout=30;
+    image: sqlinjection
+    ports:
+    - published: 5005
+      target: 80
+  sqlinjectiondb:
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: '@Password1'
+    expose:
+    - '1433'
+    image: microsoft/mssql-server-linux:latest
+version: '3.4'

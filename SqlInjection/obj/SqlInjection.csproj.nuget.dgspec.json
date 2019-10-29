@@ -1,0 +1,96 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/tongbo/Downloads/CShape/tmp/ASP.NET-Demo/SqlInjection/SqlInjection.csproj": {}
+  },
+  "projects": {
+    "/Users/tongbo/Downloads/CShape/tmp/ASP.NET-Demo/SqlInjection/SqlInjection.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/tongbo/Downloads/CShape/tmp/ASP.NET-Demo/SqlInjection/SqlInjection.csproj",
+        "projectName": "SqlInjection",
+        "projectPath": "/Users/tongbo/Downloads/CShape/tmp/ASP.NET-Demo/SqlInjection/SqlInjection.csproj",
+        "packagesPath": "/Users/tongbo/.nuget/packages/",
+        "outputPath": "/Users/tongbo/Downloads/CShape/tmp/ASP.NET-Demo/SqlInjection/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/tongbo/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[1.60.6, )"
+            },
+            "Microsoft.AspNetCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.AspNetCore.Razor.Design": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.CodeAnalysis": {
+              "target": "Package",
+              "version": "[2.10.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.4.10, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[2.2.3, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.2, )"
+            },
+            "System.CodeDom": {
+              "target": "Package",
+              "version": "[4.6.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

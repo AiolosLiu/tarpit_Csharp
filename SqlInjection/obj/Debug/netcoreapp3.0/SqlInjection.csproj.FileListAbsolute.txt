@@ -1,0 +1,4 @@
+/Users/tongbo/Downloads/CShape/ASP.NET-Demo/SqlInjection/obj/Debug/netcoreapp3.0/SqlInjection.csprojAssemblyReference.cache
+/Users/tongbo/Downloads/CShape/ASP.NET-Demo/SqlInjection/obj/Debug/netcoreapp3.0/SqlInjection.MvcApplicationPartsAssemblyInfo.cache
+/Users/tongbo/Downloads/CShape/ASP.NET-Demo/SqlInjection/obj/Debug/netcoreapp3.0/SqlInjection.AssemblyInfoInputs.cache
+/Users/tongbo/Downloads/CShape/ASP.NET-Demo/SqlInjection/obj/Debug/netcoreapp3.0/SqlInjection.AssemblyInfo.cs

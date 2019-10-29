@@ -32,6 +32,8 @@ which futher invoke the malicious payload (Gadget)
     ```
 - Command-Line Demo:
     ```sh
-    curl -X POST -d "cmd=ls -a" http://localhost:3000/exec
+    $ curl -X POST -d "reader={\"Id\":0,\"AspNetUserId\":1,\"LastName\":\"Xu\",\"FirstName\":\"Zhaoyan\",\"FullName\":\"Luke\'' Father\",\"AspNetUser\":null}" http://localhost:5005/AddNewOrder
+    
+      SqlInjection.Models.Order 
     ```
 - UI Demo:

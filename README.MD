@@ -3,7 +3,7 @@
 ## Setup
 * cd ${workplace}
 * docker-compose up --build
-* {open browser and navigate to localhost:5005}
+* {open browser and navigate to [http://localhost:5005](http://localhost:5005)}
 
 ## Vulnerability Demo
 

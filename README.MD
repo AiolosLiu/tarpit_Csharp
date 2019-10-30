@@ -41,22 +41,21 @@ http://localhost:5005/dirTraversal?name=${name}`
 - [Code Snippet](https://gitlab.com/irobert0126/aspdotnet_csharp_vuln_demo/tree/master/SqlInjection/Controllers/OrderController.cs#L96):
     ```java
     [HttpGet("vulns")]
-        public ActionResult DataLeakage(string login, string password, string encodedPath, string entityDocument) {
-            String ACCESS_KEY_ID = "AKIA2E0A8F3B244C9986";
-            String SECRET_KEY = "7CE556A3BC234CC1FF9E8A5C324C0BB70AA21B6D";
-
+    public ActionResult DataLeakage(string login, string password, string encodedPath, string entityDocument) {
+        String ACCESS_KEY_ID = "AKIA2E0A8F3B244C9986";
+        String SECRET_KEY = "7CE556A3BC234CC1FF9E8A5C324C0BB70AA21B6D";
     ```
     
 ### Sensitive data leak:
 - [Code Snippet](https://gitlab.com/irobert0126/aspdotnet_csharp_vuln_demo/tree/master/SqlInjection/Controllers/OrderController.cs#L110):
     ```java
     [HttpGet("vulns")]
-        public ActionResult DataLeakage(string login, string password, string encodedPath, string entityDocument) {
-            String ACCESS_KEY_ID = "AKIA2E0A8F3B244C9986";
-            String SECRET_KEY = "7CE556A3BC234CC1FF9E8A5C324C0BB70AA21B6D";
+    public ActionResult DataLeakage(string login, string password, string encodedPath, string entityDocument) {
+        String ACCESS_KEY_ID = "AKIA2E0A8F3B244C9986";
+        String SECRET_KEY = "7CE556A3BC234CC1FF9E8A5C324C0BB70AA21B6D";
             
-            Console.WriteLine(" AWS Properties are " + ACCESS_KEY_ID + " and " + SECRET_KEY);
-            Console.WriteLine(" Transactions Folder is " + txns_dir);
+        Console.WriteLine(" AWS Properties are " + ACCESS_KEY_ID + " and " + SECRET_KEY);
+        Console.WriteLine(" Transactions Folder is " + txns_dir);
     ```
     
 ### Insider attack:

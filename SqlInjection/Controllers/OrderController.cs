@@ -36,8 +36,7 @@ namespace SqlInjection.Controllers
             smtpClient.EnableSsl = true;
             MailMessage mail = new MailMessage();
 
-            //Setting From , To and CC
-            mail.From = new MailAddress(fromAddress, "MyWeb Site");
+            mail.From = new MailAddress(fromAddress);
             mail.To.Add(new MailAddress(toAddress));
             mail.Subject = subject;
             mail.Body = msg;

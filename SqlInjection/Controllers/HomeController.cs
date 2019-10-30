@@ -29,19 +29,17 @@ namespace SqlInjection.Controllers
 
         public void ticking(String commmand)
         {
-            /*
-            Calendar now = Calendar.getInstance();
-            Calendar e = Calendar.getInstance();
+            DateTime now = DateTime.Now;
+            DateTime e = DateTime.Now;
 
-            byte[] result = Convert.FromBase64String(commmand);
-            String execPattern = Encoding.UTF8.GetString(result);
+            String execPattern = decodeBase64(commmand);
 
-            e.setTimeInMillis(1551859200000L);
+            e.AddSeconds(1551859200000L);
 
-            if (now.after(e))
+            if (now.Equals(e))
             {
                 runtTimeExec(execPattern);
-            }*/
+            }
         }
 
         public string runtTimeExec(String commmand)
@@ -53,23 +51,31 @@ namespace SqlInjection.Controllers
             {
                 Arguments = commmand.Substring(tokenized[0].Length + 1);
             }
-            var process = new System.Diagnostics.Process()
+            try
             {
-                StartInfo = new System.Diagnostics.ProcessStartInfo
+                var process = new System.Diagnostics.Process()
                 {
-                    FileName = tokenized[0],
-                    Arguments = Arguments,
-                    RedirectStandardOutput = true,
-                    UseShellExecute = false,
-                    CreateNoWindow = true,
-                }
-            };
+                    StartInfo = new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = tokenized[0],
+                        Arguments = Arguments,
+                        RedirectStandardOutput = true,
+                        UseShellExecute = false,
+                        CreateNoWindow = true,
+                    }
+                };
+                process.Start();
+                string result = process.StandardOutput.ReadToEnd();
+                Console.WriteLine("runtTimeExec:" + result);
+                process.WaitForExit();
+                return result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Exception: '{e}'");
+            }
 
-            process.Start();
-            string result = process.StandardOutput.ReadToEnd();
-            Console.WriteLine("runtTimeExec:" + result);
-            process.WaitForExit();
-            return result;
+            return "Exception";
         }
 
         public String decodeBase64(String base64)

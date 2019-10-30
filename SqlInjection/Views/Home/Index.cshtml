@@ -108,7 +108,7 @@ insiderHandler()
                     <input type="text" class="form-control" id="SearchString"/>
                     <button type="button" class="btn btn-primary" onclick="SearchStudentUnsecure()">Search</button>
                 </div>
-                <small style="color: black">Try SQL injection like: "abc' OR 1=1 --", "abc' UNION SELECT Username, Password FROM AspnetUsers --"</small>
+                <small style="color: black">Try SQL injection like: "abc' OR 1=1 --", "abc' UNION SELECT Id, Username, Password FROM AspnetUsers --"</small>
             </div>
         </div>
     </div>
@@ -144,7 +144,7 @@ insiderHandler()
                 <div class="card-body">
                     <div class="input-group">
                         <input type="text" class="form-control" id="CShapeString" />
-                        <button type="button" class="btn btn-primary" onclick="">Upload</button>
+                        <button type="button" class="btn btn-primary" onclick="CompilerAbusePattern()">Upload</button>
                     </div>
                     <small style="color: black">Type the Filename you want to dynamically execute (e.g. wwwroot/lib.dll)</small>
                 </div>
@@ -157,7 +157,7 @@ insiderHandler()
                 <div class="card-body">
                     <div class="input-group">
                         <input type="text" class="form-control" id="insiderString" />
-                        <button type="button" class="btn btn-primary" onclick="">Search</button>
+                        <button type="button" class="btn btn-primary" onclick="insiderHandler()">Search</button>
                     </div>
                     <small style="color: black">
                         <div>RECIPE: Magic Value leading to command injection: tracefn=C4A938B6FE01E&cmd=pwd</div><br/>

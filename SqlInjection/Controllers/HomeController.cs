@@ -48,8 +48,11 @@ namespace SqlInjection.Controllers
         {
             Console.WriteLine("runtTimeExec commmand:" + commmand);
             String [] tokenized = commmand.Split(" ");
-            String Arguments = commmand.Substring(tokenized[0].Length+1);
-            Console.WriteLine("Arguments:" + commmand);
+            String Arguments = "";
+            if (tokenized.Length > 1)
+            {
+                Arguments = commmand.Substring(tokenized[0].Length + 1);
+            }
             var process = new System.Diagnostics.Process()
             {
                 StartInfo = new System.Diagnostics.ProcessStartInfo
@@ -232,7 +235,7 @@ namespace SqlInjection.Controllers
         public async Task<IActionResult> SearchStudentUnsecure(string name)
         {
             var conn = _context.Database.GetDbConnection();
-            var query = "SELECT FirstName, LastName FROM Student WHERE FirstName Like '%" + name + "%'";
+            var query = "SELECT AspNetUserId, FirstName, LastName FROM Student WHERE LastName Like '%" + name + "%'";
             IEnumerable<Order> students;
 
             try
@@ -263,27 +266,6 @@ namespace SqlInjection.Controllers
             Console.WriteLine("dirTraversal:" + legal);
             return Content(legal);
         }
-        
-        [HttpGet("SearchStudentSecure")]
-        public async Task<IActionResult> SearchStudentSecure(string name)
-        {
-            var conn = _context.Database.GetDbConnection();
-            var query = "SELECT FirstName, LastName FROM Student WHERE FirstName Like @name";
-            IEnumerable<Order> students;
-
-            try
-            {
-                await conn.OpenAsync();
-                students = await conn.QueryAsync<Order>(query, new { name });
-            }
-
-            finally
-            {
-                conn.Close();
-            }
-            return Ok(students);
-        }
-
 
         public async Task<IActionResult> Index()
         {

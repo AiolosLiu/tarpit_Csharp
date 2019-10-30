@@ -8,6 +8,7 @@ namespace SqlInjection.Models
     public class Order 
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Display(Name = "Order_ID")]
         public int Id { get; set; }
 
         public int AspNetUserId { get; set; }

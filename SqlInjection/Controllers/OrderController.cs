@@ -7,6 +7,7 @@ using SqlInjection.Database;
 
 using Newtonsoft.Json;
 using System.Net.Mail;
+using System.IO;
 
 namespace SqlInjection.Controllers
 {
@@ -71,7 +72,6 @@ namespace SqlInjection.Controllers
             string newOrderSerial = JsonConvert.SerializeObject(customerOrder);
             Console.WriteLine("SerializeObject:" + newOrderSerial);
 
-            var conn = _context.Database.GetDbConnection();
             _context.Orders.Add(customerOrder);
             _context.SaveChanges();
 
@@ -90,7 +90,91 @@ namespace SqlInjection.Controllers
             Order order = JsonConvert.DeserializeObject<Order>(reader);
             return Content(order.ToString());
         }
-    }
 
-    
+
+        [HttpGet("vulns")]
+        public ActionResult DataLeakage(
+            string login, string password,
+            string encodedPath, string entityDocument)
+        {
+            String res = "";
+            String ACCESS_KEY_ID = "AKIA2E0A8F3B244C9986";
+            String SECRET_KEY = "7CE556A3BC234CC1FF9E8A5C324C0BB70AA21B6D";
+
+            //String txns_dir = System.getProperty("transactions_folder", "/rolling/transactions");
+            String txns_dir = Path.GetDirectoryName("/rolling/transactions");
+
+            //DocumentTarpit.getDocument(entityDocument);
+
+            Console.WriteLine(" AWS Properties are " + ACCESS_KEY_ID + " and " + SECRET_KEY);
+            Console.WriteLine(" Transactions Folder is " + txns_dir);
+
+            res += " AWS Properties are " + ACCESS_KEY_ID + " and " + SECRET_KEY + "<br />\n";
+            res += " Transactions Folder is " + txns_dir + "<br />";
+
+            /*
+            try
+            {
+
+                // FLAW: Insecure cryptographic algorithm (DES) 
+                // CWE: 327 Use of Broken or Risky Cryptographic Algorithm 
+                Cipher des = Cipher.getInstance("DES");
+                SecretKey key = KeyGenerator.getInstance("DES").generateKey();
+                des.init(Cipher.ENCRYPT_MODE, key);
+
+                var conn = _context.Database.GetDbConnection();
+                String sql = "SELECT * FROM USER WHERE LOGIN = '" + login + "' AND PASSWORD = '" + password + "'";
+                resultSet = _context.Database.ExecuteSqlCommand(sql);
+
+                if (resultSet.next())
+                {
+
+                    login = resultSet.getString("login");
+                    password = resultSet.getString("password");
+
+                    User user = new User(login,
+                        resultSet.getString("fname"),
+                        resultSet.getString("lname"),
+                        resultSet.getString("passportnum"),
+                        resultSet.getString("address1"),
+                        resultSet.getString("address2"),
+                        resultSet.getString("zipCode"));
+
+                    String creditInfo = resultSet.getString("userCreditCardInfo");
+                    byte[] cc_enc_str = des.doFinal(creditInfo.getBytes());
+
+                    Cookie cookie = new Cookie("login", login);
+                    cookie.setMaxAge(864000);
+                    cookie.setPath("/");
+                    response.addCookie(cookie);
+
+                    request.setAttribute("user", user.toString());
+                    request.setAttribute("login", login);
+
+                    LOGGER.info(" User " + user + " successfully logged in ");
+                    LOGGER.info(" User " + user + " credit info is " + cc_enc_str);
+
+                    getServletContext().getRequestDispatcher("/dashboard.jsp").forward(request, response);
+
+                }
+                else
+                {
+                    request.setAttribute("login", login);
+                    request.setAttribute("password", password);
+                    request.setAttribute("keepOnline", keepOnline);
+                    request.setAttribute("message", "Failed to Sign in. Please verify credentials");
+
+                    LOGGER.info(" UserId " + login + " failed to logged in ");
+
+                    getServletContext().getRequestDispatcher("/signIn.jsp").forward(request, response);
+                }
+            }
+            catch (Exception e)
+            {
+            }
+            */
+            return Content(res);
+        }
+
+    }
 }

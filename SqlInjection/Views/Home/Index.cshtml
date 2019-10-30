@@ -11,10 +11,10 @@
             $.getJSON(`http://localhost:5005/SearchStudentUnsecure?name=${name}`
             ).done(function (data) {
                 var table = `<table class="table table-dark">
-                                            <thead> <tr> <th> Last Name </th> <th> First Name </th> </tr> </thead>
+                                            <thead> <tr> <th> Order_ID </th> <th> Last Name </th> <th> First Name </th> </tr> </thead>
                              <tbody>`;
-                data.forEach(student => {
-                    table += `<tr><td> ${student.lastName}</td> <td>${student.firstName}</td> </tr>`;
+                data.forEach(order => {
+                    table += `<tr> <td>${order.aspNetUserId}</td> <td> ${order.lastName}</td> <td>${order.firstName}</td> </tr>`;
                 });
                 table += `</tbody></table>`;
                 $('#unsecureContent').html(table);
@@ -97,34 +97,18 @@ insiderHandler()
 }
 </script>
 }
-<h2>Students</h2>
-<br>
-<p>To exploit the SQL Injection threat, you can try:
-    <ul>
-        <li>Use <span class="badge badge-danger">abc' OR 1=1 --</span> - In this case this is the easiest way to determine that SQL is unsecure</li>
-        <li>Going further, you can discover all tables in SQL by using this query <span class="badge badge-danger">abc' UNION SELECT [name], cast(max_column_id_used as varchar(5)) FROM sys.Tables --</span> - Now all tables and how many colums each one has will be shown</li>
-        <li>
-            In a hyphotetical attack, sensitive data could be stolen. Try this: <span class="badge badge-danger">abc' UNION SELECT Username, Password FROM AspnetUsers --</span>
-        </li>
-        <li>
-            Now you can try another commands, like:
-            <ul>
-                <li><span class="badge badge-danger">abc' UNION SELECT COLUMN_NAME, DATA_TYPE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'Course' --</span></li>
-                <li>Bob drop table :) - <span class="badge badge-danger">abc' DROP TABLE Student --</span> - After this, click on the button Recreat at the bottom of this page</li>
-            </ul>
-        </li>
-    </ul>
-</p>
+<h2>Demo</h2>
 <hr/>
 <div class="row">
     <div class="col col-6">
         <div class="card text-white mb-3">
-            <div class="card-header bg-danger">Unsecure find Student by Name:</div>
+            <div class="card-header bg-danger">Unsecure find Order by Last Name:</div>
             <div class="card-body">
                 <div class="input-group">
                     <input type="text" class="form-control" id="SearchString"/>
                     <button type="button" class="btn btn-primary" onclick="SearchStudentUnsecure()">Search</button>
                 </div>
+                <small style="color: black">Try SQL injection like: "abc' OR 1=1 --", "abc' UNION SELECT Username, Password FROM AspnetUsers --"</small>
             </div>
         </div>
     </div>
@@ -143,7 +127,7 @@ insiderHandler()
 
     <div class="col col-6">
             <div class="card text-white mb-3">
-                <div class="card-header bg-danger">File Download (Directory Traversal Vulnerability):</div>
+                <div class="card-header bg-secondary">File Download (Directory Traversal Vulnerability):</div>
                 <div class="card-body">
                     <div class="input-group">
                         <input type="text" class="form-control" id="DirectoryString" />
@@ -156,11 +140,11 @@ insiderHandler()
     
     <div class="col col-6">
             <div class="card text-white mb-3">
-                <div class="card-header bg-success">File Upload (Compiler Abuse Pattern Vulnerability):</div>
+                <div class="card-header bg-primary">File Upload (Compiler Abuse Pattern Vulnerability):</div>
                 <div class="card-body">
                     <div class="input-group">
                         <input type="text" class="form-control" id="CShapeString" />
-                        <button type="button" class="btn btn-primary" onclick="">Search</button>
+                        <button type="button" class="btn btn-primary" onclick="">Upload</button>
                     </div>
                     <small style="color: black">Type the Filename you want to dynamically execute (e.g. wwwroot/lib.dll)</small>
                 </div>
@@ -169,7 +153,7 @@ insiderHandler()
     
     <div class="col col-6">
             <div class="card text-white mb-3">
-                <div class="card-header bg-success">insider Handler (Dynamic Compile Vulnerability):</div>
+                <div class="card-header bg-info">insider Handler (Dynamic Compile Vulnerability):</div>
                 <div class="card-body">
                     <div class="input-group">
                         <input type="text" class="form-control" id="insiderString" />
@@ -180,7 +164,7 @@ insiderHandler()
                         <div>RECIPE: Path Traversal: x=../../etc/passwd</div><br/>
                         <div>RECIPE: Compiler Abuse Pattern: ?</div><br/>
                         <div>RECIPE: Execute a Fork Bomb and DDOS the host: ?</div><br/>
-                        <div> RECIPE: Escape validation framework: x=</div><br/>
+                        <div> RECIPE: Escape validation framework: x=</div>
                     </small>
                 </div>
             </div>
@@ -188,14 +172,14 @@ insiderHandler()
     
     <div class="col col-6">
             <div class="card text-white mb-3">
-                <div class="card-header bg-success">File Upload (Compiler Abuse Pattern Vulnerability):</div>
+                <div class="card-header bg-success">Create New Order:</div>
                 <div class="card-body">
                     <div class="input-group">
                         <input type="text" class="form-control" id="AddNewOrderString" />
-                        <button type="button" class="btn btn-primary" onclick="AddNewOrderGet()">Get</button>
-                        <button type="button" class="btn btn-primary" onclick="AddNewOrderPost()">Post</button>
+                        <button type="button" class="btn btn-primary" onclick="AddNewOrderGet()">Add(Get)</button>
+                        <button type="button" class="btn btn-primary" onclick="AddNewOrderPost()">Add(Post)</button>
                     </div>
-                    <small style="color: black">{"Id":0,"AspNetUserId":1,"LastName":"Xu","FirstName":"Zhaoyan","FullName":"Guo, JiaJia","AspNetUser":null}</small>
+                    <small style="color: black">{"Id":0,"AspNetUserId":1,"LastName":"Xu","FirstName":"Zhaoyan","AspNetUser":null}</small>
                 </div>
             </div>
     </div>

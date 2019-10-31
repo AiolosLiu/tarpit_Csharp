@@ -68,6 +68,7 @@ http://localhost:5005/dirTraversal?name=${name}`
     ```
     
 ### Insider attack:
+- [Code Snippet](https://gitlab.com/irobert0126/aspdotnet_csharp_vuln_demo/tree/master/SqlInjection/Controllers/OrderController.cs):
 1.  Time Bomb pattern
     ```java
     // RECIPE: Time Bomb pattern
@@ -82,6 +83,41 @@ http://localhost:5005/dirTraversal?name=${name}`
     }
     ```
 
+3. // RECIPE: Compiler Abuse Pattern
+    ```java
+    /*  string code = @"
+        using System;
+        namespace First
+        {
+            public class Program
+            {
+                public static void Main()
+                {
+                    Console.WriteLine('HAHAHA');
+                }
+            }
+        }
+    "; */
+
+    String base64Str = "dXNpbmcgU3lzdGVtOwpuYW1lc3BhY2UgRmlyc3QKewogICBwdWJsaWMgY2xhc3MgUHJvZ3JhbSB7CiAgICAgIHB1YmxpYyBzdGF0aWMgdm9pZCBNYWluKCkgewogICAgICAgICAgICAgQ29uc29sZS5Xcml0ZUxpbmUoIkhBSEFIQSIpOwogICAgICB9CiAgIH0KfQ==";
+    ```
+    
+    ```java
+    // Compile source file.
+    CSharpCompilation compilation = CSharpCompilation.Create(
+                assemblyName,
+                syntaxTrees: new[] { syntaxTree },
+                references: references,
+                options: new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
+    ```
+   
+    ```java
+    // Load and instantiate compiled class.
+    Assembly assembly = AssemblyLoadContext.Default.LoadFromStream(ms);
+    var type = assembly.GetType("First.Program");
+    MethodInfo main = type.GetMethod("Main");
+    main.Invoke(null, null);
+    ```
 
 ### Business logic flaw
 - [Code Snippet](https://gitlab.com/irobert0126/aspdotnet_csharp_vuln_demo/tree/master/SqlInjection/Controllers/OrderController.cs):

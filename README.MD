@@ -47,7 +47,7 @@
 http://localhost:5005/dirTraversal?name=${name}`
 
 ### Hard Coded credentials:
-- [Code Snippet](https://gitlab.com/irobert0126/aspdotnet_csharp_vuln_demo/tree/master/SqlInjection/Controllers/OrderController.cs#L96):
+- [Code Snippet](https://gitlab.com/irobert0126/aspdotnet_csharp_vuln_demo/tree/master/SqlInjection/Controllers/OrderController.cs#L107):
     ```java
     [HttpGet("vulns")]
     public ActionResult DataLeakage(string login, string password, string encodedPath, string entityDocument) {
@@ -56,7 +56,7 @@ http://localhost:5005/dirTraversal?name=${name}`
     ```
     
 ### Sensitive data leak:
-- [Code Snippet](https://gitlab.com/irobert0126/aspdotnet_csharp_vuln_demo/tree/master/SqlInjection/Controllers/OrderController.cs#L110):
+- [Code Snippet](https://gitlab.com/irobert0126/aspdotnet_csharp_vuln_demo/tree/master/SqlInjection/Controllers/OrderController.cs#L114):
     ```java
     [HttpGet("vulns")]
     public ActionResult DataLeakage(string login, string password, string encodedPath, string entityDocument) {
@@ -68,7 +68,7 @@ http://localhost:5005/dirTraversal?name=${name}`
     ```
     
 ### Insider attack:
-- [Code Snippet](https://gitlab.com/irobert0126/aspdotnet_csharp_vuln_demo/tree/master/SqlInjection/Controllers/OrderController.cs):
+- [Code Snippet](https://gitlab.com/irobert0126/aspdotnet_csharp_vuln_demo/tree/master/SqlInjection/Controllers/HomeController.cs#L105):
 1.  Time Bomb pattern
     ```java
     // RECIPE: Time Bomb pattern
@@ -120,7 +120,7 @@ http://localhost:5005/dirTraversal?name=${name}`
     ```
 
 ### Business logic flaw
-- [Code Snippet](https://gitlab.com/irobert0126/aspdotnet_csharp_vuln_demo/tree/master/SqlInjection/Controllers/OrderController.cs):
+- [Code Snippet](https://gitlab.com/irobert0126/aspdotnet_csharp_vuln_demo/tree/master/SqlInjection/Controllers/OrderController.cs#L94):
     ```java
     [HttpPost("AddNewOrder")]
     public ActionResult AddNewOrderFlaw(string reader) {

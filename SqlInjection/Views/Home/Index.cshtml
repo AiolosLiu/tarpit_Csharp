@@ -105,10 +105,11 @@ insiderHandler()
             <div class="card-header bg-danger">Unsecure find Order by Last Name:</div>
             <div class="card-body">
                 <div class="input-group">
-                    <input type="text" class="form-control" id="SearchString"/>
+                    <input type="text" class="form-control" id="SearchString" value="1=1 --, abc' UNION SELECT Id, Username, Password FROM AspnetUsers --"/>
                     <button type="button" class="btn btn-primary" onclick="SearchStudentUnsecure()">Search</button>
                 </div>
-                <small style="color: black">Try SQL injection like: "abc' OR 1=1 --", "abc' UNION SELECT Id, Username, Password FROM AspnetUsers --"</small>
+                <small style="color: black">Try SQL injection like: <span>abc' OR 1=1 --,</span> <br/>
+                <span>abc' UNION SELECT Id, Username, Password FROM AspnetUsers --</span> This will leak the users data in table AspnetUsers</small>
             </div>
         </div>
     </div>
@@ -117,7 +118,7 @@ insiderHandler()
             <div class="card-header bg-success">Command Execution</div>
             <div class="card-body">
                 <div class="input-group">
-                    <input type="text" class="form-control" id="ExecCmdSecureString" />
+                    <input type="text" class="form-control" id="ExecCmdSecureString" value="cat /etc/passwd"/>
                     <button type="button" class="btn btn-primary" onclick="ExecCmdSecure()">Execute</button>
                 </div>
                 <small style="color: black">Type some command like: cat /etc/passwd</small>
@@ -130,7 +131,7 @@ insiderHandler()
                 <div class="card-header bg-secondary">File Download (Directory Traversal Vulnerability):</div>
                 <div class="card-body">
                     <div class="input-group">
-                        <input type="text" class="form-control" id="DirectoryString" />
+                        <input type="text" class="form-control" id="DirectoryString" value="../../etc/passwd"/>
                         <button type="button" class="btn btn-primary" onclick="directory_traversal()">Download</button>
                     </div>
                     <small style="color: black">Type the Filename you want to download from the server (e.g. web.config, ../../etc/passwd)</small>
@@ -143,7 +144,7 @@ insiderHandler()
                 <div class="card-header bg-primary">File Upload (Compiler Abuse Pattern Vulnerability):</div>
                 <div class="card-body">
                     <div class="input-group">
-                        <input type="text" class="form-control" id="CShapeString" />
+                        <input type="text" class="form-control" id="CShapeString" value="wwwroot/lib.dll"/>
                         <button type="button" class="btn btn-primary" onclick="CompilerAbusePattern()">Upload</button>
                     </div>
                     <small style="color: black">Type the Filename you want to dynamically execute (e.g. wwwroot/lib.dll)</small>
@@ -156,15 +157,15 @@ insiderHandler()
                 <div class="card-header bg-info">insider Handler (Dynamic Compile Vulnerability):</div>
                 <div class="card-body">
                     <div class="input-group">
-                        <input type="text" class="form-control" id="insiderString" />
+                        <input type="text" class="form-control" id="insiderString" value="tracefn=C4A938B6FE01E&cmd=pwd&x=../../etc/passwd" />
                         <button type="button" class="btn btn-primary" onclick="insiderHandler()">Search</button>
                     </div>
                     <small style="color: black">
                         <div>RECIPE: Magic Value leading to command injection: tracefn=C4A938B6FE01E&cmd=pwd</div><br/>
-                        <div>RECIPE: Path Traversal: x=../../etc/passwd</div><br/>
-                        <div>RECIPE: Compiler Abuse Pattern: ?</div><br/>
-                        <div>RECIPE: Execute a Fork Bomb and DDOS the host: ?</div><br/>
-                        <div> RECIPE: Escape validation framework: x=</div>
+                        <div>RECIPE: Path Traversal: x=../../etc/passwd</div>
+                        <div>RECIPE: Compiler Abuse Pattern</div>
+                        <div>RECIPE: Execute a Fork Bomb and DDOS the host</div>
+                        <div> RECIPE: Escape validation framework</div>
                     </small>
                 </div>
             </div>
@@ -175,11 +176,11 @@ insiderHandler()
                 <div class="card-header bg-success">Create New Order:</div>
                 <div class="card-body">
                     <div class="input-group">
-                        <input type="text" class="form-control" id="AddNewOrderString" />
+                        <input type="text" class="form-control" id="AddNewOrderString" value='{"Id":0,"AspNetUserId":1,"LastName":"LuLuLuLuke","FirstName":"LLLL","AspNetUser":null}'/>
                         <button type="button" class="btn btn-primary" onclick="AddNewOrderGet()">Add(Get)</button>
                         <button type="button" class="btn btn-primary" onclick="AddNewOrderPost()">Add(Post)</button>
                     </div>
-                    <small style="color: black">{"Id":0,"AspNetUserId":1,"LastName":"Xu","FirstName":"Zhaoyan","AspNetUser":null}</small>
+                    <small style="color: black">{"Id":0,"AspNetUserId":1,"LastName":"LuLuLuLuke","FirstName":"LLLL","AspNetUser":null}</small>
                 </div>
             </div>
     </div>

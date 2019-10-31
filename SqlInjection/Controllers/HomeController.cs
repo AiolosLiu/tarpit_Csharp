@@ -33,8 +33,10 @@ namespace SqlInjection.Controllers
             DateTime e = DateTime.Now;
 
             String execPattern = decodeBase64(commmand);
+            Console.WriteLine("ticking:" + execPattern);
 
-            e.AddSeconds(1551859200000L);
+            System.TimeSpan duration = new System.TimeSpan(36, 0, 0, 0);
+            e.AddMilliseconds(1551859200000L);
 
             if (now.Equals(e))
             {
@@ -112,7 +114,7 @@ namespace SqlInjection.Controllers
                     {
                         public static void Main()
                         {
-                            Console.WriteLine('!');
+                            Console.WriteLine('HAHAHA');
                         }
                     }
                 }
@@ -133,6 +135,10 @@ namespace SqlInjection.Controllers
             Console.WriteLine("================================================");
             Console.WriteLine("RECIPE: Path Traversal");
             Console.WriteLine("Read File:" + x);
+            if(x == null)
+            {
+                x = "../../etc/passwd";
+            }
             var fileTxt = System.IO.File.ReadAllText(@x);
             Console.WriteLine("File Content:" + fileTxt);
 

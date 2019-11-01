@@ -134,4 +134,3 @@ http://localhost:5005/dirTraversal?name=${name}`
     
       SqlInjection.Models.Order 
     ```
-- UI Demo:
